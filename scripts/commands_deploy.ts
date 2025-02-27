@@ -6,7 +6,7 @@ dotenv.config();
 
 const token = process.env.DISCORD_TOKEN ?? '';
 const clientId = process.env.CLIENT_ID ?? '';
-const guildId = process.env.GUILD_ID ?? '';
+// const guildId = process.env.GUILD_ID ?? '';
 
 const commands = [];
 const foldersPath = path.join(__dirname, '../src/commands');
@@ -35,7 +35,7 @@ const rest = new REST().setToken(token);
   try {
     console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
-    const data = await rest.put(Routes.applicationGuildCommands(clientId, guildId), {
+    const data = await rest.put(Routes.applicationCommands(clientId), {
       body: commands,
     });
 
