@@ -1,6 +1,5 @@
 ## Description
-
-- Created to observe a discord channel, list the users and channel join date;
+Created to observe a discord channel, list the users and channel join date
 
 ## Start project
 
@@ -8,11 +7,9 @@
 
   ```
   $ npm install
-
   ```
 
 - Set .env file
-
   ```
   DISCORD_TOKEN=""
   CLIENT_ID=""
@@ -21,5 +18,5 @@
 
 - Add commands to bot
   ```
-  npm run commands
+  $ npm run commands
   ```
