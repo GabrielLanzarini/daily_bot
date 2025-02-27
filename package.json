@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.ts",
-    "commands": "ts-node ./scripts/commands_deploy.ts"
+    "commands": "ts-node ./scripts/commands_deploy.ts",
+    "start": "npx ts-node app.ts"
   },
   "keywords": [],
   "author": "",
