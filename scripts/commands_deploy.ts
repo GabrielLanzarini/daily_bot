@@ -5,8 +5,9 @@ import path from 'node:path';
 dotenv.config();
 
 const token = process.env.DISCORD_TOKEN ?? '';
+const mode = process.env.MODE ?? '';
 const clientId = process.env.CLIENT_ID ?? '';
-// const guildId = process.env.GUILD_ID ?? '';
+const guildId = process.env.GUILD_ID ?? '';
 
 const commands = [];
 const foldersPath = path.join(__dirname, '../src/commands');
@@ -34,14 +35,19 @@ const rest = new REST().setToken(token);
 (async () => {
   try {
     console.log(`Started refreshing ${commands.length} application (/) commands.`);
+    const body = commands;
 
-    const data = await rest.put(Routes.applicationCommands(clientId), {
-      body: commands,
-    });
+    if (mode == 'prod') {
+      const data = await rest.put(Routes.applicationCommands(clientId), {body});
+      console.log('data', data);
+      console.log(`Successfully reloaded in all servers.`);
+    }
 
-    console.log('data', data);
-
-    console.log(`Successfully reloaded  application (/) commands.`);
+    if (mode == 'dev') {
+      const data = await rest.put(Routes.applicationGuildCommands(clientId, guildId), {body});
+      console.log('data', data);
+      console.log(`Successfully reloaded in guilds development.`);
+    }
   } catch (error) {
     console.error(error);
   }
