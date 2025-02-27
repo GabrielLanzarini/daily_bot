@@ -6,6 +6,8 @@ import {findOneByServerId} from '../../db/service/dailyChannel';
 import {insertOrUpdate} from '../../db/service/dailyUser';
 
 export default async (oldState: VoiceState, newState: VoiceState) => {
+  if (oldState.channelId === newState.channelId) return;
+
   const channelToMonitor = (await findOneByServerId(newState.guild.id)) as IChannel;
 
   const user: IUser = {
